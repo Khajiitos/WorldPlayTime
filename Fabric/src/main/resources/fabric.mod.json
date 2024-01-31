@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "worldplaytime",
+  "version": "${version}",
+  "name": "World Play Time",
+  "description": "Displays the world's play time in the world selection menu.",
+  "authors": ["Khajiitos"],
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "client",
+  "contact": {
+    "homepage": "https://github.com/Khajiitos/WorldPlayTime",
+    "sources": "https://github.com/Khajiitos/WorldPlayTime",
+    "issues": "https://github.com/Khajiitos/WorldPlayTime/issues"
+  },
+  "entrypoints": {
+    "client": [
+      "me.khajiitos.worldplaytime.fabric.WorldPlayTimeFabric"
+    ]
+  },
+  "mixins": [
+    "worldplaytime.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "${minecraft_version_range}",
+    "java": ">=17"
+  }
+}
