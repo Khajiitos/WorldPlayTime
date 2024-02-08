@@ -20,7 +20,8 @@ import java.nio.file.Path;
 @Mixin(LevelStorageSource.class)
 public class LevelStorageSourceMixin {
 
-    @Inject(at = @At("RETURN"), method = "lambda$levelSummaryReader$5")
+    // Mixin doesn't particularly like remapping lambdas, so we add the lambda's obfuscated name as an alias
+    @Inject(at = @At("RETURN"), method = {"lambda$levelSummaryReader$5", "method_29015"}, remap = false)
     public void onReturnLevelSummary(LevelStorageSource.LevelDirectory levelDirectory, boolean idk, Path path, DataFixer dataFixer, CallbackInfoReturnable<LevelSummary> cir) {
         LevelSummary levelSummary = cir.getReturnValue();
 

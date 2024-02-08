@@ -24,7 +24,6 @@ repositories {
 }
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
     mappings loom.officialMojangMappings()
 
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
