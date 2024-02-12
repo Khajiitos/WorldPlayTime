@@ -14,6 +14,10 @@ pluginManagement {
             name = 'SpongePowered'
             url = 'https://repo.spongepowered.org/maven/'
         }
+        maven {
+            name = 'NeoForged'
+            url = 'https://maven.neoforged.net/releases'
+        }
     }
 }
 
@@ -26,3 +30,4 @@ rootProject.name = 'WorldPlayTime'
 include 'Common'
 include 'Forge'
 include 'Fabric'
+include 'NeoForged'

@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "${neo_loader_version_range}"
+license = "MIT"
+issueTrackerURL = "https://github.com/Khajiitos/WorldPlayTime/issues"
+
+[[mods]]
+modId = "worldplaytime"
+version = "${version}"
+logoFile="icon.png"
+displayName = "World Play Time"
+authors = "Khajiitos"
+displayURL="https://github.com/Khajiitos/WorldPlayTime"
+description = '''Displays the world's play time in the world selection menu.'''
+displayTest = "IGNORE_ALL_VERSION"
+
+[[mixins]]
+config="worldplaytime.mixins.json"
+
+[[dependencies.worldplaytime]]
+modId = "neoforge"
+mandatory = true
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.worldplaytime]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+

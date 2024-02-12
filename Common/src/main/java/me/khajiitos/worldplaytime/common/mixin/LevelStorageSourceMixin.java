@@ -3,8 +3,9 @@ package me.khajiitos.worldplaytime.common.mixin;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mojang.datafixers.DataFixer;
+import com.mojang.serialization.Dynamic;
 import me.khajiitos.worldplaytime.common.IWithPlayTime;
+import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.LevelSummary;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,13 +21,12 @@ import java.nio.file.Path;
 @Mixin(LevelStorageSource.class)
 public class LevelStorageSourceMixin {
 
-    // Mixin doesn't particularly like remapping lambdas, so we add the lambda's obfuscated name as an alias
-    @Inject(at = @At("RETURN"), method = {"lambda$levelSummaryReader$5", "method_29015"}, remap = false)
-    public void onReturnLevelSummary(LevelStorageSource.LevelDirectory levelDirectory, boolean idk, Path path, DataFixer dataFixer, CallbackInfoReturnable<LevelSummary> cir) {
+    @Inject(at = @At("RETURN"), method = "makeLevelSummary")
+    public void onMakeLevelSummary(Dynamic<?> dynamic, LevelStorageSource.LevelDirectory levelDirectory, boolean idk, CallbackInfoReturnable<LevelSummary> cir) {
         LevelSummary levelSummary = cir.getReturnValue();
 
         if (levelSummary instanceof IWithPlayTime withPlayTime) {
-            Path stats = path.getParent().resolve("stats");
+            Path stats = levelDirectory.resourcePath(LevelResource.PLAYER_STATS_DIR);
             File statsFile = stats.toFile();
 
             if (statsFile.isDirectory()) {
