@@ -1,11 +1,11 @@
 package me.khajiitos.worldplaytime.common.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import me.khajiitos.worldplaytime.common.config.ServerPlayTimeManager;
 import me.khajiitos.worldplaytime.common.config.WPTConfig;
 import me.khajiitos.worldplaytime.common.util.PlayTimeRenderer;
 import me.khajiitos.worldplaytime.common.util.ServerEntryRenderPos;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
 import org.spongepowered.asm.mixin.Final;
@@ -23,7 +23,7 @@ public class OnlineServerEntryMixin {
     @Shadow @Final private Minecraft minecraft;
 
     @Inject(at = @At("TAIL"), method = "render")
-    public void onRender(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
+    public void onRender(PoseStack poseStack, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
         if (!WPTConfig.showServerPlayTime.get()) {
             return;
         }
@@ -63,6 +63,6 @@ public class OnlineServerEntryMixin {
             }
         }
 
-        PlayTimeRenderer.render(guiGraphics, renderX, renderY, playTime);
+        PlayTimeRenderer.render(poseStack, renderX, renderY, playTime);
     }
 }

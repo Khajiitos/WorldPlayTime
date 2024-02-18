@@ -16,7 +16,7 @@ public class EventHandlerCommon {
             return;
         }
 
-        ServerData serverData = connection.getServerData();
+        ServerData serverData = Minecraft.getInstance().getCurrentServer();
 
         if (serverData == null) {
             return;

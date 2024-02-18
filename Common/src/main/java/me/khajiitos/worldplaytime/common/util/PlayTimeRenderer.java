@@ -1,8 +1,10 @@
 package me.khajiitos.worldplaytime.common.util;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import me.khajiitos.worldplaytime.common.WorldPlayTime;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -33,7 +35,7 @@ public class PlayTimeRenderer {
         return minecraft.font.width(component) + 11;
     }
 
-    public static void render(GuiGraphics guiGraphics, int x, int y, int playTimeTicks) {
+    public static void render(PoseStack poseStack, int x, int y, int playTimeTicks) {
         Minecraft minecraft = Minecraft.getInstance();
         Component component = getPlayTimeComponent(playTimeTicks);
 
@@ -41,7 +43,8 @@ public class PlayTimeRenderer {
             return;
         }
 
-        guiGraphics.blit(TIME_ICON, x, y, 0.f, 0.f, 9, 9, 9, 9);
-        guiGraphics.drawString(minecraft.font, component, x + 11, y + 1, 0xFF808080, false);
+        RenderSystem.setShaderTexture(0, TIME_ICON);
+        GuiComponent.blit(poseStack, x, y, 0.f, 0.f, 9, 9, 9, 9);
+        minecraft.font.draw(poseStack, component, x + 11, y + 1, 0xFF808080);
     }
 }
