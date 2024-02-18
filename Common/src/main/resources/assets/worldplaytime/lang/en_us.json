@@ -1,3 +1,11 @@
 {
-  "worldplaytime.format": "%sh"
+  "worldplaytime.format": "%sh",
+  "worldplaytime.config.header": "World Play Time Config",
+  "worldplaytime.config.general": "General",
+  "worldplaytime.config.showServerPlayTime": "Show Server Play Time",
+  "worldplaytime.config.serverPlayTimePosition": "Server Play Time Position",
+  "worldplaytime.config.serverPlayTimePosition.after_name": "After Name",
+  "worldplaytime.config.serverPlayTimePosition.behind_count": "Behind Count",
+  "worldplaytime.config.serverPlayTimePosition.left": "Left",
+  "worldplaytime.config.serverPlayTimePosition.right": "Right"
 }

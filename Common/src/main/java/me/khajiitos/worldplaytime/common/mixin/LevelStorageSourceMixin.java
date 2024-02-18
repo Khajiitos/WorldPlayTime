@@ -4,7 +4,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.datafixers.DataFixer;
-import me.khajiitos.worldplaytime.common.IWithPlayTime;
+import me.khajiitos.worldplaytime.common.util.IWithPlayTime;
 import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.LevelSummary;
 import org.spongepowered.asm.mixin.Mixin;

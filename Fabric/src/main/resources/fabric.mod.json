@@ -16,6 +16,9 @@
   "entrypoints": {
     "client": [
       "me.khajiitos.worldplaytime.fabric.WorldPlayTimeFabric"
+    ],
+    "modmenu": [
+      "me.khajiitos.worldplaytime.fabric.ModMenuApiImpl"
     ]
   },
   "mixins": [
