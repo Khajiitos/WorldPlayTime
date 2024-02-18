@@ -1,6 +1,6 @@
 package me.khajiitos.worldplaytime.common.mixin;
 
-import me.khajiitos.worldplaytime.common.IWithPlayTime;
+import me.khajiitos.worldplaytime.common.util.IWithPlayTime;
 import net.minecraft.world.level.storage.LevelSummary;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

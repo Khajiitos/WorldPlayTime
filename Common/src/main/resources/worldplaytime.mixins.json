@@ -9,8 +9,9 @@
   "refmap": "worldplaytime.refmap.json",
   "client": [
     "LevelStorageSourceMixin",
-    "WorldListEntryMixin",
-    "LevelSummaryMixin"
+    "LevelSummaryMixin",
+    "OnlineServerEntryMixin",
+    "WorldListEntryMixin"
   ],
   "mixins": []
 }
