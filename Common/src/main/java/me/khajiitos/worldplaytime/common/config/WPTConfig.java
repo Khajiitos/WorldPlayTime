@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import me.khajiitos.worldplaytime.common.WorldPlayTime;
+import me.khajiitos.worldplaytime.common.util.Color;
 import me.khajiitos.worldplaytime.common.util.ServerEntryRenderPos;
+import me.khajiitos.worldplaytime.common.util.WorldEntryRenderPos;
 
 import java.io.File;
 import java.io.FileReader;
@@ -21,8 +23,21 @@ public class WPTConfig {
 
     @Entry
     public static final WPTConfigValues.BooleanValue showServerPlayTime = new WPTConfigValues.BooleanValue(false);
+
     @Entry
     public static final WPTConfigValues.EnumValue<ServerEntryRenderPos> serverPlayTimePosition = new WPTConfigValues.EnumValue<>(ServerEntryRenderPos.AFTER_NAME);
+
+    @Entry
+    public static final WPTConfigValues.ColorValue serverPlayTimeColor = new WPTConfigValues.ColorValue(new Color(128, 128, 128, 255));
+
+    @Entry
+    public static final WPTConfigValues.BooleanValue showWorldPlayTime = new WPTConfigValues.BooleanValue(true);
+
+    @Entry
+    public static final WPTConfigValues.EnumValue<WorldEntryRenderPos> worldPlayTimePosition = new WPTConfigValues.EnumValue<>(WorldEntryRenderPos.TOP_RIGHT);
+
+    @Entry
+    public static final WPTConfigValues.ColorValue worldPlayTimeColor = new WPTConfigValues.ColorValue(new Color(128, 128, 128, 255));
 
     public static void init() {
         if (!file.exists()) {

@@ -63,6 +63,6 @@ public class OnlineServerEntryMixin {
             }
         }
 
-        PlayTimeRenderer.render(poseStack, renderX, renderY, playTime);
+        PlayTimeRenderer.render(poseStack, renderX, renderY, playTime, WPTConfig.serverPlayTimeColor.get());
     }
 }

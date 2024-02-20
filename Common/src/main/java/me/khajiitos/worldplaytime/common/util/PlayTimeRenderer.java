@@ -35,7 +35,7 @@ public class PlayTimeRenderer {
         return minecraft.font.width(component) + 11;
     }
 
-    public static void render(PoseStack poseStack, int x, int y, int playTimeTicks) {
+    public static void render(PoseStack poseStack, int x, int y, int playTimeTicks, Color color) {
         Minecraft minecraft = Minecraft.getInstance();
         Component component = getPlayTimeComponent(playTimeTicks);
 
@@ -43,8 +43,10 @@ public class PlayTimeRenderer {
             return;
         }
 
+        RenderSystem.setShaderColor(color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
         RenderSystem.setShaderTexture(0, TIME_ICON);
         GuiComponent.blit(poseStack, x, y, 0.f, 0.f, 9, 9, 9, 9);
-        minecraft.font.draw(poseStack, component, x + 11, y + 1, 0xFF808080);
+        RenderSystem.setShaderColor(1.f, 1.f, 1.f, 1.f);
+        minecraft.font.draw(poseStack, component, x + 11, y + 1, color.toARGB());
     }
 }
