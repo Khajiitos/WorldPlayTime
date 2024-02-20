@@ -2,6 +2,7 @@ package me.khajiitos.worldplaytime.common.config;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
+import me.khajiitos.worldplaytime.common.util.Color;
 
 public class WPTConfigValues {
 
@@ -71,6 +72,23 @@ public class WPTConfigValues {
         @Override
         public JsonElement write() {
             return new JsonPrimitive(this.get().name().toLowerCase());
+        }
+    }
+
+    public static class ColorValue extends Value<Color> {
+        public ColorValue(Color defaultValue) {
+            super(defaultValue);
+        }
+
+        @Override
+        public Color read(JsonElement jsonElement) {
+            Color color = Color.fromString(jsonElement.getAsString());
+            return color != null ? color : this.getDefault();
+        }
+
+        @Override
+        public JsonElement write() {
+            return new JsonPrimitive(this.get().toString());
         }
     }
 }
