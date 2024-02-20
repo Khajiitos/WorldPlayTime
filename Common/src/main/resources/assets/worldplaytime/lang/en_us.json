@@ -15,7 +15,7 @@
 
   "worldplaytime.config.showWorldPlayTime": "Show World Play Time",
   "worldplaytime.config.worldPlayTimePosition": "World Play Time Position",
-  "worldplaytime.config.worldPlayTimePosition.topRight": "Top Right",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "Top Right",
   "worldplaytime.config.worldPlayTimePosition.left": "Left",
   "worldplaytime.config.worldPlayTimePosition.right": "Right",
   "worldplaytime.config.worldPlayTimeColor": "World Play Time Color"
