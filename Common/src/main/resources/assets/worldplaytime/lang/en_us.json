@@ -1,11 +1,22 @@
 {
   "worldplaytime.format": "%sh",
   "worldplaytime.config.header": "World Play Time Config",
-  "worldplaytime.config.general": "General",
+  "worldplaytime.config.category.general": "General",
+  "worldplaytime.config.category.world_entry": "World Entry",
+  "worldplaytime.config.category.server_entry": "Server Entry",
+
   "worldplaytime.config.showServerPlayTime": "Show Server Play Time",
   "worldplaytime.config.serverPlayTimePosition": "Server Play Time Position",
   "worldplaytime.config.serverPlayTimePosition.after_name": "After Name",
   "worldplaytime.config.serverPlayTimePosition.behind_count": "Behind Count",
   "worldplaytime.config.serverPlayTimePosition.left": "Left",
-  "worldplaytime.config.serverPlayTimePosition.right": "Right"
+  "worldplaytime.config.serverPlayTimePosition.right": "Right",
+  "worldplaytime.config.serverPlayTimeColor": "Server Play Time Color",
+
+  "worldplaytime.config.showWorldPlayTime": "Show World Play Time",
+  "worldplaytime.config.worldPlayTimePosition": "World Play Time Position",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "Top Right",
+  "worldplaytime.config.worldPlayTimePosition.left": "Left",
+  "worldplaytime.config.worldPlayTimePosition.right": "Right",
+  "worldplaytime.config.worldPlayTimeColor": "World Play Time Color"
 }
