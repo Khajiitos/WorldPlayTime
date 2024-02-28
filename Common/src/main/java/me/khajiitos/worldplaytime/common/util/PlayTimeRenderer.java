@@ -6,6 +6,8 @@ import me.khajiitos.worldplaytime.common.WorldPlayTime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,7 +22,7 @@ public class PlayTimeRenderer {
 
         double hours = (ticks / 20.0) / 3600.0;
 
-        return Component.translatable("worldplaytime.format", Component.literal(hours >= 100.0 ? String.valueOf((int)hours) : String.format("%.1f", hours)));
+        return new TranslatableComponent("worldplaytime.format", new TextComponent(hours >= 100.0 ? String.valueOf((int)hours) : String.format("%.1f", hours)));
     }
 
     public static int getWholeWidth(int ticks) {

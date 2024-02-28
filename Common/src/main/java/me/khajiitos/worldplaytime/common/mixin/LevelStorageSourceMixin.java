@@ -21,12 +21,12 @@ import java.nio.file.Path;
 public class LevelStorageSourceMixin {
 
     // Mixin doesn't particularly like remapping lambdas, so we add the lambda's obfuscated name as an alias
-    @Inject(at = @At("RETURN"), method = {"lambda$levelSummaryReader$6", "lambda$levelSummaryReader$7", "method_29015"}, remap = false)
-    public void onReturnLevelSummary(LevelStorageSource.LevelDirectory levelDirectory, boolean idk, Path path, DataFixer dataFixer, CallbackInfoReturnable<LevelSummary> cir) {
+    @Inject(at = @At("RETURN"), method = {"lambda$levelSummaryReader$2", "method_29015", "m_193012_"}, remap = false)
+    public void onReturnLevelSummary(File file, boolean idk, File anotherFile, DataFixer $$3, CallbackInfoReturnable<LevelSummary> cir) {
         LevelSummary levelSummary = cir.getReturnValue();
 
         if (levelSummary instanceof IWithPlayTime withPlayTime) {
-            Path stats = path.getParent().resolve("stats");
+            Path stats = file.toPath().resolve("stats");
             File statsFile = stats.toFile();
 
             if (statsFile.isDirectory()) {
@@ -34,10 +34,10 @@ public class LevelStorageSourceMixin {
 
                 if (saveFiles != null) {
                     int totalPlayTime = 0;
-                    for (File file : saveFiles) {
+                    for (File statFile : saveFiles) {
                         // file should be a .json file containing stats
 
-                        try (FileReader fileReader = new FileReader(file)) {
+                        try (FileReader fileReader = new FileReader(statFile)) {
                             JsonObject jsonObject =  JsonParser.parseReader(fileReader).getAsJsonObject();
 
                             if (jsonObject.has("stats")) {
