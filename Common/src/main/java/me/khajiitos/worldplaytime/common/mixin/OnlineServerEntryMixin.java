@@ -11,16 +11,35 @@ import net.minecraft.client.multiplayer.ServerData;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ServerSelectionList.OnlineServerEntry.class)
+@Mixin(value = ServerSelectionList.OnlineServerEntry.class, priority = 2000)
 public class OnlineServerEntryMixin {
 
     @Shadow @Final private ServerData serverData;
 
     @Shadow @Final private Minecraft minecraft;
+
+    @Unique
+    private static int worldplaytime$serverNameStartX;
+
+    @ModifyArg(
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I",
+                    ordinal = 0
+            ),
+            method = "render",
+            index = 2
+    )
+    public int serverNameX(int x) {
+        worldplaytime$serverNameStartX = x;
+        return x;
+    }
 
     @Inject(at = @At("TAIL"), method = "render")
     public void onRender(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
@@ -40,9 +59,8 @@ public class OnlineServerEntryMixin {
 
         switch (renderPos) {
             case AFTER_NAME -> {
-                // TODO: Server Country Flags integration - "Behind Name" option might cause issues
                 int serverNameWidth = this.minecraft.font.width(serverData.name);
-                renderX = x + 38 + serverNameWidth;
+                renderX = worldplaytime$serverNameStartX + 3 + serverNameWidth;
                 renderY = y + 1;
             }
             case BEHIND_COUNT -> {
