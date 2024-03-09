@@ -9,8 +9,9 @@ version = "${version}"
 logoFile="icon.png"
 displayName = "World Play Time"
 authors = "Khajiitos"
-displayURL="https://github.com/Khajiitos/WorldPlayTime"
+displayURL = "https://github.com/Khajiitos/WorldPlayTime"
 description = '''Displays the world's play time in the world selection menu.'''
+updateJSONURL = "https://updates.khajiitos.fun/world-play-time/updates-forge.json"
 displayTest = "IGNORE_ALL_VERSION"
 
 [[dependencies.worldplaytime]]
