@@ -25,18 +25,18 @@ public class OnlineServerEntryMixin {
     @Shadow @Final private Minecraft minecraft;
 
     @Unique
-    private static int worldplaytime$serverNameStartX;
+    private static float worldplaytime$serverNameStartX;
 
     @ModifyArg(
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I",
+                    target = "Lnet/minecraft/client/gui/Font;draw(Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/lang/String;FFI)I",
                     ordinal = 0
             ),
             method = "render",
             index = 2
     )
-    public int serverNameX(int x) {
+    public float serverNameX(float x) {
         worldplaytime$serverNameStartX = x;
         return x;
     }
@@ -60,7 +60,7 @@ public class OnlineServerEntryMixin {
         switch (renderPos) {
             case AFTER_NAME -> {
                 int serverNameWidth = this.minecraft.font.width(serverData.name);
-                renderX = worldplaytime$serverNameStartX + 3 + serverNameWidth;
+                renderX = (int) (worldplaytime$serverNameStartX + 3 + serverNameWidth);
                 renderY = y + 1;
             }
             case BEHIND_COUNT -> {
