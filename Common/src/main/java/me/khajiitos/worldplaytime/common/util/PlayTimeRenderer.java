@@ -7,6 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Locale;
+
 public class PlayTimeRenderer {
 
     private static final ResourceLocation TIME_ICON = new ResourceLocation(WorldPlayTime.MOD_ID, "textures/gui/time_icon.png");
@@ -18,7 +20,7 @@ public class PlayTimeRenderer {
 
         double hours = (ticks / 20.0) / 3600.0;
 
-        return Component.translatable("worldplaytime.format", Component.literal(hours >= 100.0 ? String.valueOf((int)hours) : String.format("%.1f", hours)));
+        return Component.translatable("worldplaytime.format", Component.literal(hours >= 100.0 ? String.valueOf((int)hours) : String.format(Locale.US, "%.1f", hours)));
     }
 
     public static int getWholeWidth(int ticks) {
