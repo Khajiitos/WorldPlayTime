@@ -13,5 +13,5 @@ repositories {
 
 dependencies {
     compileOnly 'org.spongepowered:mixin:0.8.5'
-    compileOnly "me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}"
+    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 }

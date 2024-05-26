@@ -5,18 +5,18 @@ import me.khajiitos.worldplaytime.common.config.cloth.ClothConfigCheck;
 import me.khajiitos.worldplaytime.common.config.cloth.ClothConfigScreenMaker;
 import me.khajiitos.worldplaytime.common.handler.EventHandlerCommon;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
-import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.GameShuttingDownEvent;
-import net.neoforged.neoforge.event.TickEvent;
 
 @Mod(WorldPlayTime.MOD_ID)
 public class WorldPlayTimeNeoForged {
-    public WorldPlayTimeNeoForged() {
+    public WorldPlayTimeNeoForged(ModContainer modContainer) {
         if (FMLLoader.getDist() == Dist.CLIENT) {
             WorldPlayTime.init();
 
@@ -25,13 +25,13 @@ public class WorldPlayTimeNeoForged {
             NeoForge.EVENT_BUS.addListener(WorldPlayTimeNeoForged::onLoggedOut);
 
             if (ClothConfigCheck.isInstalled()) {
-                ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory(ClothConfigScreenMaker::create));
+                modContainer.registerExtensionPoint(IConfigScreenFactory.class, ClothConfigScreenMaker::create);
             }
 
         }
     }
 
-    private static void onClientTick(TickEvent.ClientTickEvent e) {
+    private static void onClientTick(ClientTickEvent.Post e) {
         EventHandlerCommon.onClientTick();
     }
 

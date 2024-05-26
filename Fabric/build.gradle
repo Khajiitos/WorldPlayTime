@@ -1,10 +1,10 @@
 plugins {
-    id 'fabric-loom' version '1.5-SNAPSHOT'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 base {
     archivesName = mod_id + "-" + mod_version + "-" + minecraft_version_group + "-FABRIC"
@@ -67,7 +67,7 @@ tasks.withType(Javadoc).configureEach {
 
 // Ideally this project would use Gradle from the root project
 tasks.register('wrapper', Wrapper) {
-    gradleVersion = '8.3'
+    gradleVersion = '8.7'
 }
 
 jar.finalizedBy('remapJar')

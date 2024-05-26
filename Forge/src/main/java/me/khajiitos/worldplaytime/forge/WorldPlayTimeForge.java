@@ -4,6 +4,7 @@ import me.khajiitos.worldplaytime.common.WorldPlayTime;
 import me.khajiitos.worldplaytime.common.config.cloth.ClothConfigCheck;
 import me.khajiitos.worldplaytime.common.config.cloth.ClothConfigScreenMaker;
 import me.khajiitos.worldplaytime.common.handler.EventHandlerCommon;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
@@ -13,6 +14,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.function.Function;
 
 @Mod(WorldPlayTime.MOD_ID)
 public class WorldPlayTimeForge {
@@ -26,7 +29,7 @@ public class WorldPlayTimeForge {
 
 
             if (ClothConfigCheck.isInstalled()) {
-                ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory(ClothConfigScreenMaker::create));
+                ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((Function<Screen, Screen>) ClothConfigScreenMaker::create));
             }
         });
     }

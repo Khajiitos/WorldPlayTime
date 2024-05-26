@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(WorldSelectionList.WorldListEntry.class)
 public class WorldListEntryMixin {
     @Shadow @Final
-    private LevelSummary summary;
+    LevelSummary summary;
 
     @Inject(at = @At("TAIL"), method = "render")
     public void render(GuiGraphics guiGraphics, int index, int y, int x, int width, int height, int pMouseX, int pMouseY, boolean pHovering, float pPartialTick, CallbackInfo ci) {
