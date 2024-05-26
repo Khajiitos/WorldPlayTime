@@ -65,7 +65,7 @@ public class OnlineServerEntryMixin {
             }
             case BEHIND_COUNT -> {
                 int statusWidth = this.minecraft.font.width(serverData.status);
-                renderX = x + entryWidth - 52 - statusWidth;
+                renderX = x + entryWidth - 24 - statusWidth - playTimeWidth;
                 renderY = y;
             }
             case LEFT -> {
