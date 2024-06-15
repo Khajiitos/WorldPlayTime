@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class PlayTimeRenderer {
 
-    private static final ResourceLocation TIME_ICON = new ResourceLocation(WorldPlayTime.MOD_ID, "textures/gui/time_icon.png");
+    private static final ResourceLocation TIME_ICON = ResourceLocation.fromNamespaceAndPath(WorldPlayTime.MOD_ID, "textures/gui/time_icon.png");
 
     public static @Nullable Component getPlayTimeComponent(int ticks) {
         if (ticks <= 0) {
