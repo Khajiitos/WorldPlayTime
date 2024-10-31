@@ -25,7 +25,7 @@ public class WorldPlayTimeNeoForged {
             NeoForge.EVENT_BUS.addListener(WorldPlayTimeNeoForged::onLoggedOut);
 
             if (ClothConfigCheck.isInstalled()) {
-                modContainer.registerExtensionPoint(IConfigScreenFactory.class, ClothConfigScreenMaker::create);
+                modContainer.registerExtensionPoint(IConfigScreenFactory.class, (a, screen) -> ClothConfigScreenMaker.create(screen));
             }
 
         }
