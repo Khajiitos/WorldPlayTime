@@ -1,6 +1,6 @@
 {
   "worldplaytime.format": "%s小時",
-  "worldplaytime.config.header": "世界遊玩時間設定",
+  "worldplaytime.config.header": "World Play Time 設定",
   "worldplaytime.config.category.general": "一般",
   "worldplaytime.config.category.world_entry": "世界項目",
   "worldplaytime.config.category.server_entry": "伺服器項目",
