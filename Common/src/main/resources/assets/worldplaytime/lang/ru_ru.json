@@ -1,0 +1,22 @@
+{
+  "worldplaytime.format": "%s ч",
+  "worldplaytime.config.header": "Настройка времени игры в мире",
+  "worldplaytime.config.category.general": "Общие",
+  "worldplaytime.config.category.world_entry": "Запись мира",
+  "worldplaytime.config.category.server_entry": "Запись сервера",
+
+  "worldplaytime.config.showServerPlayTime": "Показывать время игры на сервере",
+  "worldplaytime.config.serverPlayTimePosition": "Позиция времени игры на сервере",
+  "worldplaytime.config.serverPlayTimePosition.after_name": "После названия",
+  "worldplaytime.config.serverPlayTimePosition.behind_count": "Позади количества",
+  "worldplaytime.config.serverPlayTimePosition.left": "Слева",
+  "worldplaytime.config.serverPlayTimePosition.right": "Справа",
+  "worldplaytime.config.serverPlayTimeColor": "Цвет времени игры на сервере",
+
+  "worldplaytime.config.showWorldPlayTime": "Показывать время игры в мире",
+  "worldplaytime.config.worldPlayTimePosition": "Позиция времени игры в мире",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "Сверху справа",
+  "worldplaytime.config.worldPlayTimePosition.left": "Слева",
+  "worldplaytime.config.worldPlayTimePosition.right": "Справа",
+  "worldplaytime.config.worldPlayTimeColor": "Цвет времени игры в мире"
+}
