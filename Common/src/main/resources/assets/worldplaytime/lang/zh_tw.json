@@ -1,0 +1,22 @@
+{
+  "worldplaytime.format": "%s小時",
+  "worldplaytime.config.header": "World Play Time 設定",
+  "worldplaytime.config.category.general": "一般",
+  "worldplaytime.config.category.world_entry": "世界項目",
+  "worldplaytime.config.category.server_entry": "伺服器項目",
+
+  "worldplaytime.config.showServerPlayTime": "顯示伺服器遊玩時間",
+  "worldplaytime.config.serverPlayTimePosition": "伺服器遊玩時間位置",
+  "worldplaytime.config.serverPlayTimePosition.after_name": "名稱之後",
+  "worldplaytime.config.serverPlayTimePosition.behind_count": "數字之後",
+  "worldplaytime.config.serverPlayTimePosition.left": "左邊",
+  "worldplaytime.config.serverPlayTimePosition.right": "右邊",
+  "worldplaytime.config.serverPlayTimeColor": "伺服器遊玩時間顏色",
+
+  "worldplaytime.config.showWorldPlayTime": "顯示世界遊玩時間",
+  "worldplaytime.config.worldPlayTimePosition": "世界遊玩時間位置",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "右上角",
+  "worldplaytime.config.worldPlayTimePosition.left": "左邊",
+  "worldplaytime.config.worldPlayTimePosition.right": "右邊",
+  "worldplaytime.config.worldPlayTimeColor": "世界遊玩時間顏色"
+}
