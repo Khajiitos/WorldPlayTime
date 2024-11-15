@@ -1,6 +1,6 @@
 {
   "worldplaytime.format": "%s ч",
-  "worldplaytime.config.header": "Настройка времени игры в мире",
+  "worldplaytime.config.header": "Настройка World Play Time",
   "worldplaytime.config.category.general": "Общие",
   "worldplaytime.config.category.world_entry": "Запись мира",
   "worldplaytime.config.category.server_entry": "Запись сервера",
