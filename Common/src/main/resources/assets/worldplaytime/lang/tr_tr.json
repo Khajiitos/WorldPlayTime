@@ -1,0 +1,22 @@
+{
+  "worldplaytime.format": "%sh",
+  "worldplaytime.config.header": "Dünya Oynama Süresi Konfigürasyonu",
+  "worldplaytime.config.category.general": "Genel",
+  "worldplaytime.config.category.world_entry": "Dünya Girişi",
+  "worldplaytime.config.category.server_entry": "Sunucu Girişi",
+
+  "worldplaytime.config.showServerPlayTime": "Sunucu Oynama Süresini Göster",
+  "worldplaytime.config.serverPlayTimePosition": "Sunucu Oynama Süresi Pozisyonu",
+  "worldplaytime.config.serverPlayTimePosition.after_name": "İsimden Sonra",
+  "worldplaytime.config.serverPlayTimePosition.behind_count": "Sayının Arkasında",
+  "worldplaytime.config.serverPlayTimePosition.left": "Sol",
+  "worldplaytime.config.serverPlayTimePosition.right": "Sağ",
+  "worldplaytime.config.serverPlayTimeColor": "Sunucu Oynama Süresi Rengi",
+
+  "worldplaytime.config.showWorldPlayTime": "Dünya Oynama Süresini Göster",
+  "worldplaytime.config.worldPlayTimePosition": "Dünya Oynama Süresi Pozisyonu",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "Sağ Üst",
+  "worldplaytime.config.worldPlayTimePosition.left": "Sol",
+  "worldplaytime.config.worldPlayTimePosition.right": "Sağ",
+  "worldplaytime.config.worldPlayTimeColor": "Dünya Oynama Süresi Rengi"
+}
