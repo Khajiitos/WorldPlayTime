@@ -1,6 +1,6 @@
 {
   "worldplaytime.format": "%sh",
-  "worldplaytime.config.header": "Dünya Oynama Süresi Konfigürasyonu",
+  "worldplaytime.config.header": "World Play Time Konfigürasyonu",
   "worldplaytime.config.category.general": "Genel",
   "worldplaytime.config.category.world_entry": "Dünya Girişi",
   "worldplaytime.config.category.server_entry": "Sunucu Girişi",
