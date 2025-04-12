@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ServerPlayTimeManager {
@@ -52,8 +53,14 @@ public class ServerPlayTimeManager {
                 return;
             }
 
-            for (String serverIp : compoundTag.getAllKeys()) {
-                int playTime = compoundTag.getInt(serverIp);
+            for (String serverIp : compoundTag.keySet()) {
+                Optional<Integer> playTimeOpt = compoundTag.getInt(serverIp);
+
+                if (playTimeOpt.isEmpty()) {
+                    continue;
+                }
+
+                int playTime = playTimeOpt.get();
 
                 if (playTime > 0) {
                     serverPlayTimes.put(serverIp, playTime);
