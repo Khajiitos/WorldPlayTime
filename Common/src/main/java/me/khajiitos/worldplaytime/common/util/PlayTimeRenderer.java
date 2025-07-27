@@ -3,7 +3,7 @@ package me.khajiitos.worldplaytime.common.util;
 import me.khajiitos.worldplaytime.common.WorldPlayTime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
@@ -44,7 +44,7 @@ public class PlayTimeRenderer {
             return;
         }
 
-        guiGraphics.blit(RenderType::guiTextured, TIME_ICON, x, y, 0.f, 0.f, 9, 9, 9, 9, color.toARGB());
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TIME_ICON, x, y, 0.f, 0.f, 9, 9, 9, 9, color.toARGB());
         guiGraphics.drawString(minecraft.font, component, x + 11, y + 1, color.toARGB(), false);
     }
 }
