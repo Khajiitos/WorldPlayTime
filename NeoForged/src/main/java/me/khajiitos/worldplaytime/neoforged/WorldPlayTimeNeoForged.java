@@ -17,7 +17,7 @@ import net.neoforged.neoforge.event.GameShuttingDownEvent;
 @Mod(WorldPlayTime.MOD_ID)
 public class WorldPlayTimeNeoForged {
     public WorldPlayTimeNeoForged(ModContainer modContainer) {
-        if (FMLLoader.getDist() == Dist.CLIENT) {
+        if (FMLLoader.getCurrent().getDist() == Dist.CLIENT) {
             WorldPlayTime.init();
 
             NeoForge.EVENT_BUS.addListener(WorldPlayTimeNeoForged::onClientTick);

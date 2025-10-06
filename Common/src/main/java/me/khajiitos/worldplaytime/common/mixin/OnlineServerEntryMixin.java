@@ -22,8 +22,9 @@ public class OnlineServerEntryMixin {
 
     @Shadow @Final private ServerData serverData;
 
-    @Shadow @Final private Minecraft minecraft;
-
+    @Shadow
+    @Final
+    private Minecraft minecraft;
     @Unique
     private static int worldplaytime$serverNameStartX;
 
@@ -33,7 +34,7 @@ public class OnlineServerEntryMixin {
                     target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V",
                     ordinal = 0
             ),
-            method = "render",
+            method = "renderContent",
             index = 2
     )
     public int serverNameX(int x) {
@@ -41,8 +42,8 @@ public class OnlineServerEntryMixin {
         return x;
     }
 
-    @Inject(at = @At("TAIL"), method = "render")
-    public void onRender(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "renderContent")
+    public void onRender(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
         if (!WPTConfig.showServerPlayTime.get()) {
             return;
         }
@@ -57,24 +58,26 @@ public class OnlineServerEntryMixin {
         int renderX, renderY;
         ServerEntryRenderPos renderPos = WPTConfig.serverPlayTimePosition.get();
 
+        ServerSelectionList.OnlineServerEntry entry = (ServerSelectionList.OnlineServerEntry)(Object)this;
+
         switch (renderPos) {
             case AFTER_NAME -> {
                 int serverNameWidth = this.minecraft.font.width(serverData.name);
                 renderX = worldplaytime$serverNameStartX + 3 + serverNameWidth;
-                renderY = y + 1;
+                renderY = entry.getContentY() + 1;
             }
             case BEHIND_COUNT -> {
                 int statusWidth = this.minecraft.font.width(serverData.status);
-                renderX = x + entryWidth - 24 - statusWidth - playTimeWidth;
-                renderY = y;
+                renderX = entry.getContentX() + entry.getContentWidth() - 24 - statusWidth - playTimeWidth;
+                renderY = entry.getContentY();
             }
             case LEFT -> {
-                renderX = x - playTimeWidth - 5;
-                renderY = y + 10;
+                renderX = entry.getContentX() - playTimeWidth - 5;
+                renderY = entry.getContentY() + 10;
             }
             case RIGHT -> {
-                renderX = x + entryWidth + 6;
-                renderY = y + 10;
+                renderX = entry.getContentX() + entry.getContentWidth() + 6;
+                renderY = entry.getContentY() + 10;
             }
             default -> {
                 return;

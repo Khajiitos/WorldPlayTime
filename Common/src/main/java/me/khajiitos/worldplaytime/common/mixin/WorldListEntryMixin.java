@@ -18,13 +18,14 @@ public class WorldListEntryMixin {
     @Shadow @Final
     LevelSummary summary;
 
-    @Inject(at = @At("TAIL"), method = "render")
-    public void render(GuiGraphics guiGraphics, int index, int y, int x, int width, int height, int pMouseX, int pMouseY, boolean pHovering, float pPartialTick, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "renderContent")
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean pHovering, float pPartialTick, CallbackInfo ci) {
         if (!WPTConfig.showWorldPlayTime.get()) {
             return;
         }
 
         if (this.summary instanceof IWithPlayTime withPlayTime) {
+            WorldSelectionList.WorldListEntry entry = (WorldSelectionList.WorldListEntry)(Object) this;
             int ticks = withPlayTime.getPlayTimeTicks();
             int indicatorWidth = PlayTimeRenderer.getWholeWidth(ticks);
 
@@ -33,16 +34,16 @@ public class WorldListEntryMixin {
 
                 switch (WPTConfig.worldPlayTimePosition.get()) {
                     case TOP_RIGHT -> {
-                        renderX = x + width - indicatorWidth - 4;
-                        renderY = y;
+                        renderX = entry.getContentX() + entry.getContentWidth() - indicatorWidth - 4;
+                        renderY = entry.getContentY();
                     }
                     case LEFT -> {
-                        renderX = x - indicatorWidth - 5;
-                        renderY = y + 10;
+                        renderX = entry.getContentX() - indicatorWidth - 5;
+                        renderY = entry.getContentY() + 10;
                     }
                     case RIGHT -> {
-                        renderX = x + width + 14;
-                        renderY = y + 10;
+                        renderX = entry.getContentX() + entry.getContentWidth() + 14;
+                        renderY = entry.getContentY() + 10;
                     }
                     default -> {
                         return;
