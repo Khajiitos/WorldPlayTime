@@ -34,7 +34,7 @@ public class WorldListEntryMixin {
 
                 switch (WPTConfig.worldPlayTimePosition.get()) {
                     case TOP_RIGHT -> {
-                        renderX = entry.getContentX() + entry.getContentWidth() - indicatorWidth - 4;
+                        renderX = entry.getContentX() + entry.getContentWidth() - indicatorWidth - 1;
                         renderY = entry.getContentY();
                     }
                     case LEFT -> {
