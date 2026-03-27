@@ -11,37 +11,37 @@ import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.GameShuttingDownEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.util.function.Function;
 
 @Mod(WorldPlayTime.MOD_ID)
 public class WorldPlayTimeForge {
-    public WorldPlayTimeForge() {
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+    public WorldPlayTimeForge(FMLJavaModLoadingContext context) {
+        if (FMLLoader.getDist() == Dist.CLIENT) {
             WorldPlayTime.init();
-
-            MinecraftForge.EVENT_BUS.addListener(WorldPlayTimeForge::onClientTick);
-            MinecraftForge.EVENT_BUS.addListener(WorldPlayTimeForge::onShutDown);
-            MinecraftForge.EVENT_BUS.addListener(WorldPlayTimeForge::onLoggedOut);
-
+            MinecraftForge.EVENT_BUS.register(WorldPlayTimeForge.class);
 
             if (ClothConfigCheck.isInstalled()) {
-                ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((Function<Screen, Screen>) ClothConfigScreenMaker::create));
+                context.registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory((Function<Screen, Screen>) ClothConfigScreenMaker::create));
             }
-        });
+        }
     }
 
+    @SubscribeEvent
     private static void onClientTick(TickEvent.ClientTickEvent e) {
         EventHandlerCommon.onClientTick();
     }
 
+    @SubscribeEvent
     private static void onShutDown(GameShuttingDownEvent e) {
         EventHandlerCommon.onLeavingGame();
     }
 
+    @SubscribeEvent
     private static void onLoggedOut(ClientPlayerNetworkEvent.LoggingOut e) {
         EventHandlerCommon.onLeaveServer();
     }

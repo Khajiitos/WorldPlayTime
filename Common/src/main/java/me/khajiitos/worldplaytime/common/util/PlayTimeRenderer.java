@@ -2,17 +2,17 @@ package me.khajiitos.worldplaytime.common.util;
 
 import me.khajiitos.worldplaytime.common.WorldPlayTime;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
 public class PlayTimeRenderer {
 
-    private static final ResourceLocation TIME_ICON = ResourceLocation.fromNamespaceAndPath(WorldPlayTime.MOD_ID, "textures/gui/time_icon.png");
+    private static final Identifier TIME_ICON = Identifier.fromNamespaceAndPath(WorldPlayTime.MOD_ID, "textures/gui/time_icon.png");
 
     public static @Nullable Component getPlayTimeComponent(int ticks) {
         if (ticks <= 0) {
@@ -36,7 +36,7 @@ public class PlayTimeRenderer {
         return minecraft.font.width(component) + 11;
     }
 
-    public static void render(GuiGraphics guiGraphics, int x, int y, int playTimeTicks, Color color) {
+    public static void render(GuiGraphicsExtractor guiGraphics, int x, int y, int playTimeTicks, Color color) {
         Minecraft minecraft = Minecraft.getInstance();
         Component component = getPlayTimeComponent(playTimeTicks);
 
@@ -45,6 +45,6 @@ public class PlayTimeRenderer {
         }
 
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TIME_ICON, x, y, 0.f, 0.f, 9, 9, 9, 9, color.toARGB());
-        guiGraphics.drawString(minecraft.font, component, x + 11, y + 1, color.toARGB(), false);
+        guiGraphics.text(minecraft.font, component, x + 11, y + 1, color.toARGB(), false);
     }
 }

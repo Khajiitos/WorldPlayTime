@@ -21,8 +21,8 @@ import java.nio.file.Path;
 @Mixin(LevelStorageSource.class)
 public class LevelStorageSourceMixin {
 
-    @Inject(at = @At("RETURN"), method = "makeLevelSummary")
-    public void onMakeLevelSummary(Dynamic<?> dynamic, LevelStorageSource.LevelDirectory levelDirectory, boolean idk, CallbackInfoReturnable<LevelSummary> cir) {
+    @Inject(at = @At("RETURN"), method = "makeLevelSummary", remap = false)
+    public void onMakeLevelSummary(Dynamic<?> dynamic, LevelStorageSource.LevelDirectory levelDirectory, boolean locked, int version, CallbackInfoReturnable<LevelSummary> cir) {
         LevelSummary levelSummary = cir.getReturnValue();
 
         if (levelSummary instanceof IWithPlayTime withPlayTime) {
@@ -56,7 +56,7 @@ public class LevelStorageSourceMixin {
                     }
 
                     if (totalPlayTime > 0) {
-                        withPlayTime.setPlayTimeTicks(totalPlayTime);
+                        withPlayTime.worldPlayTime$setPlayTimeTicks(totalPlayTime);
                     }
                 }
             }

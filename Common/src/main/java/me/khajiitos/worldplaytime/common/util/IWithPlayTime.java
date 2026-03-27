@@ -1,6 +1,6 @@
 package me.khajiitos.worldplaytime.common.util;
 
 public interface IWithPlayTime {
-    void setPlayTimeTicks(int playTimeTicks);
-    int getPlayTimeTicks();
+    void worldPlayTime$setPlayTimeTicks(int playTimeTicks);
+    int worldPlayTime$getPlayTimeTicks();
 }

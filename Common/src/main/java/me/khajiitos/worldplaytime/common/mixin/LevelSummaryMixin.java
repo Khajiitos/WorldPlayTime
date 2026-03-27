@@ -11,12 +11,12 @@ public class LevelSummaryMixin implements IWithPlayTime {
     private int worldplaytime$playTimeTicks = -1;
 
     @Override
-    public void setPlayTimeTicks(int playTimeTicks) {
+    public void worldPlayTime$setPlayTimeTicks(int playTimeTicks) {
         this.worldplaytime$playTimeTicks = playTimeTicks;
     }
 
     @Override
-    public int getPlayTimeTicks() {
+    public int worldPlayTime$getPlayTimeTicks() {
         return this.worldplaytime$playTimeTicks;
     }
 }

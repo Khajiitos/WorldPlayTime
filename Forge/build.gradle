@@ -5,49 +5,31 @@ buildscript {
             url = "https://repo.spongepowered.org/maven/"
         }
     }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
 }
 
 plugins {
+    id 'java'
     id 'idea'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'net.minecraftforge.gradle' version '7.0.17'
 }
 
-apply plugin: 'org.spongepowered.mixin'
-
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 base {
     archivesName = mod_id + "-" + mod_version + "-" + minecraft_version_group + "-FORGE"
 }
 
 minecraft {
-    mappings channel: "official", version: minecraft_version
-
-    copyIdeResources = true
-
     runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', mod_id
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
+        configureEach {
+            workingDir = layout.projectDirectory.dir('run')
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.logging.console.level', 'debug'
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
         }
-    }
-}
 
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+        register('client')
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
@@ -58,10 +40,13 @@ repositories {
         name = 'Fabric'
         url = 'https://maven.fabricmc.net/'
     }
+    minecraft.mavenizer(it) // In Kotlin, it = this
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
 
@@ -106,14 +91,3 @@ tasks.withType(JavaCompile).configureEach {
 tasks.withType(Javadoc).configureEach {
     source(project(":Common").sourceSets.main.allJava)
 }
-
-// Ideally this project would use Gradle from the root project
-tasks.register('wrapper', Wrapper) {
-    gradleVersion = '8.14.2'
-}
-
-// Register dummy ideaSyncTask so that Gradle doesn't complain
-// but why does it complain here and not in the Fabric project?
-tasks.register('ideaSyncTask', {})
-
-jar.finalizedBy('reobfJar')

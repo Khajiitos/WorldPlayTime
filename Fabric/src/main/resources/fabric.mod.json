@@ -25,8 +25,8 @@
     "worldplaytime.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.0",
-    "fabric": "*",
+    "fabricloader": ">=0.18.0",
+    "fabric-api": "*",
     "minecraft": "${minecraft_version_range}",
     "java": ">=21"
   }

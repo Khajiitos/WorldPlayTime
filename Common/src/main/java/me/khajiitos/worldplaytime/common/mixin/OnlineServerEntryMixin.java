@@ -5,7 +5,7 @@ import me.khajiitos.worldplaytime.common.config.WPTConfig;
 import me.khajiitos.worldplaytime.common.util.PlayTimeRenderer;
 import me.khajiitos.worldplaytime.common.util.ServerEntryRenderPos;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
 import org.spongepowered.asm.mixin.Final;
@@ -31,19 +31,20 @@ public class OnlineServerEntryMixin {
     @ModifyArg(
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V",
+                    target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V",
                     ordinal = 0
             ),
-            method = "renderContent",
-            index = 2
+            method = "extractContent",
+            index = 2,
+            remap = false
     )
     public int serverNameX(int x) {
         worldplaytime$serverNameStartX = x;
         return x;
     }
 
-    @Inject(at = @At("TAIL"), method = "renderContent")
-    public void onRender(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "extractContent", remap = false)
+    public void onRender(final GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
         if (!WPTConfig.showServerPlayTime.get()) {
             return;
         }

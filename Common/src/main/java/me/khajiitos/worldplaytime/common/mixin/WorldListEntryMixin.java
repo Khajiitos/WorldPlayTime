@@ -3,7 +3,7 @@ package me.khajiitos.worldplaytime.common.mixin;
 import me.khajiitos.worldplaytime.common.config.WPTConfig;
 import me.khajiitos.worldplaytime.common.util.IWithPlayTime;
 import me.khajiitos.worldplaytime.common.util.PlayTimeRenderer;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.worldselection.WorldSelectionList;
 import net.minecraft.world.level.storage.LevelSummary;
 import org.spongepowered.asm.mixin.Final;
@@ -18,15 +18,15 @@ public class WorldListEntryMixin {
     @Shadow @Final
     LevelSummary summary;
 
-    @Inject(at = @At("TAIL"), method = "renderContent")
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean pHovering, float pPartialTick, CallbackInfo ci) {
+    @Inject(at = @At("TAIL"), method = "extractContent", remap = false)
+    public void render(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, boolean pHovering, float pPartialTick, CallbackInfo ci) {
         if (!WPTConfig.showWorldPlayTime.get()) {
             return;
         }
 
         if (this.summary instanceof IWithPlayTime withPlayTime) {
             WorldSelectionList.WorldListEntry entry = (WorldSelectionList.WorldListEntry)(Object) this;
-            int ticks = withPlayTime.getPlayTimeTicks();
+            int ticks = withPlayTime.worldPlayTime$getPlayTimeTicks();
             int indicatorWidth = PlayTimeRenderer.getWholeWidth(ticks);
 
             if (indicatorWidth != 0) {

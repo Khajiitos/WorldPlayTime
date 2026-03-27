@@ -12,7 +12,7 @@ plugins {
     id 'net.neoforged.gradle.userdev' version '7.+'
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 base {
     archivesName = mod_id + "-" + mod_version + "-" + minecraft_version_group + "-NEOFORGE"
@@ -96,12 +96,3 @@ tasks.named("compileJava").configure {
 tasks.withType(Javadoc).configureEach {
     source(project(":Common").sourceSets.main.allJava)
 }
-
-// Ideally this project would use Gradle from the root project
-tasks.register('wrapper', Wrapper) {
-    gradleVersion = '8.14.2'
-}
-
-// Register dummy ideaSyncTask so that Gradle doesn't complain
-// but why does it complain here and not in the Fabric project?
-tasks.register('ideaSyncTask', {})

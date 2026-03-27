@@ -11,7 +11,7 @@ displayName = "World Play Time"
 authors = "Khajiitos"
 displayURL="https://github.com/Khajiitos/WorldPlayTime"
 description = '''Displays the world's play time in the world selection menu.'''
-updateJSONURL = "https://updates.khajiitos.me/world-play-time/updates-neoforge.json"
+updateJSONURL = "https://updates.khajiitos.dev/world-play-time/updates-neoforge.json"
 displayTest = "IGNORE_ALL_VERSION"
 
 [[mixins]]
