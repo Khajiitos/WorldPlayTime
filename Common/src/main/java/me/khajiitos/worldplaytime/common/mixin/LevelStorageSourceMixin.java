@@ -1,8 +1,6 @@
 package me.khajiitos.worldplaytime.common.mixin;
 
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.mojang.serialization.Dynamic;
 import me.khajiitos.worldplaytime.common.util.IWithPlayTime;
 import net.minecraft.world.level.storage.LevelResource;
@@ -17,6 +15,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.UUID;
 
 @Mixin(LevelStorageSource.class)
 public class LevelStorageSourceMixin {
@@ -36,6 +35,17 @@ public class LevelStorageSourceMixin {
                     int totalPlayTime = 0;
                     for (File file : saveFiles) {
                         // file should be a .json file containing stats
+                        // Also make sure it has the [UUID].json filename
+
+                        if (!file.getName().endsWith(".json")) {
+                            continue;
+                        }
+
+                        try {
+                            UUID.fromString(file.getName().substring(0, file.getName().length() - 5));
+                        } catch (IllegalArgumentException e) {
+                            continue;
+                        }
 
                         try (FileReader fileReader = new FileReader(file)) {
                             JsonObject jsonObject =  JsonParser.parseReader(fileReader).getAsJsonObject();
@@ -52,7 +62,7 @@ public class LevelStorageSourceMixin {
                                     }
                                 }
                             }
-                        } catch (JsonIOException | IOException | IllegalStateException ignored) {}
+                        } catch (JsonParseException | ClassCastException | IOException | IllegalStateException ignored) {}
                     }
 
                     if (totalPlayTime > 0) {
