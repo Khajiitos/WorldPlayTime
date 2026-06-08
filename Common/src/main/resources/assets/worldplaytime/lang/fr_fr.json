@@ -1,0 +1,22 @@
+{
+  "worldplaytime.format": "%sh",
+  "worldplaytime.config.header": "Paramètres de World Play Time",
+  "worldplaytime.config.category.general": "Général",
+  "worldplaytime.config.category.world_entry": "Paramètres monde",
+  "worldplaytime.config.category.server_entry": "Paramètres serveur",
+
+  "worldplaytime.config.showServerPlayTime": "Afficher le temps de jeu sur serveur",
+  "worldplaytime.config.serverPlayTimePosition": "Position du temps de jeu sur serveur",
+  "worldplaytime.config.serverPlayTimePosition.after_name": "Après le nom",
+  "worldplaytime.config.serverPlayTimePosition.behind_count": "Derrière le compteur",
+  "worldplaytime.config.serverPlayTimePosition.left": "Gauche",
+  "worldplaytime.config.serverPlayTimePosition.right": "Droite",
+  "worldplaytime.config.serverPlayTimeColor": "Couleur du temps de jeu sur serveur",
+  
+  "worldplaytime.config.showWorldPlayTime": "Afficher le temps de jeu des mondes",
+  "worldplaytime.config.worldPlayTimePosition": "Position du temps de jeu des mondes",
+  "worldplaytime.config.worldPlayTimePosition.top_right": "En haut à droite",
+  "worldplaytime.config.worldPlayTimePosition.left": "Gauche",
+  "worldplaytime.config.worldPlayTimePosition.right": "Droite",
+  "worldplaytime.config.worldPlayTimeColor": "Couleur du temps de jeu des mondes"
+}
